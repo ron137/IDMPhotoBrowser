@@ -78,7 +78,7 @@ static const CGFloat labelPadding = 10;
     _label.backgroundColor = [UIColor clearColor];
     _label.textAlignment = NSTextAlignmentCenter;
     _label.lineBreakMode = NSLineBreakByWordWrapping;
-    _label.numberOfLines = 3;
+    _label.numberOfLines = 20;
     _label.textColor = [UIColor whiteColor];
     _label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
     _label.shadowOffset = CGSizeMake(0, 1);
@@ -91,7 +91,7 @@ static const CGFloat labelPadding = 10;
 }
 
 - (void)setBackground {
-    UIView *fadeView = [[UIView alloc] initWithFrame:CGRectMake(0, -100, 10000, 130+100)]; // Static width, autoresizingMask is not working
+    UIView *fadeView = [[UIView alloc] initWithFrame:CGRectMake(0, -300, 10000, 350+300)]; // Static width, autoresizingMask is not working
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = fadeView.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithWhite:0 alpha:0.0] CGColor], (id)[[UIColor colorWithWhite:0 alpha:0.8] CGColor], nil];
