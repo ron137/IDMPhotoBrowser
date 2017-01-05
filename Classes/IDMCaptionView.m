@@ -35,9 +35,10 @@ static const CGFloat labelPadding = 10;
         _photo = photo;
         self.opaque = NO;
         
+        [self setupCaption];
+
         [self setBackground];
         
-        [self setupCaption];
     }
     
     return self;
@@ -87,17 +88,24 @@ static const CGFloat labelPadding = 10;
         _label.text = [_photo caption] ? [_photo caption] : @" ";
     }
     
+    
     [self addSubview:_label];
 }
 
 - (void)setBackground {
-    UIView *fadeView = [[UIView alloc] initWithFrame:CGRectMake(0, -300, 10000, 350+300)]; // Static width, autoresizingMask is not working
+    
+    CGSize captionSize = [self sizeThatFits:CGSizeMake(_label.frame.size.width, 0)];
+    NSLog(@"%f",captionSize);
+
+    UIView *fadeView = [[UIView alloc] initWithFrame:CGRectMake(0, -100, 10000, captionSize.height+100)]; // Static width, autoresizingMask is not working
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = fadeView.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithWhite:0 alpha:0.0] CGColor], (id)[[UIColor colorWithWhite:0 alpha:0.8] CGColor], nil];
     [fadeView.layer insertSublayer:gradient atIndex:0];
     fadeView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight; //UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    
     [self addSubview:fadeView];
+    [self sendSubviewToBack:fadeView];
 }
 
 @end

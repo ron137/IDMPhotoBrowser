@@ -880,7 +880,16 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     }
     captionView.alpha = [self areControlsHidden] ? 0 : 1; // Initial alpha
 
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] 
+        initWithTarget:self action:@selector(didTapCaptionViewWithGesture:)];
+
+    [captionView addGestureRecognizer:tapGesture];
+
     return captionView;
+}
+
+- (void)didTapCaptionViewWithGesture:(UITapGestureRecognizer *)tapGesture {
+    [self handleSingleTap];
 }
 
 - (UIImage *)imageForPhoto:(id<IDMPhoto>)photo {
