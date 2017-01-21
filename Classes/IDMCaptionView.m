@@ -97,7 +97,8 @@ static const CGFloat labelPadding = 10;
     CGSize captionSize = [self sizeThatFits:CGSizeMake(_label.frame.size.width, 0)];
     NSLog(@"%f",captionSize);
 
-    UIView *fadeView = [[UIView alloc] initWithFrame:CGRectMake(0, -100, 10000, captionSize.height+100)]; // Static width, autoresizingMask is not working
+    float fadeHeight = MAX(captionSize.height+100, [_photo underlyingImage].size.height);
+    UIView *fadeView = [[UIView alloc] initWithFrame:CGRectMake(0, -100, 10000, fadeHeight)]; // Static width, autoresizingMask is not working
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = fadeView.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithWhite:0 alpha:0.0] CGColor], (id)[[UIColor colorWithWhite:0 alpha:0.8] CGColor], nil];
